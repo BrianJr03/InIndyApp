@@ -2,7 +2,7 @@
 
 Indianapolis has a lot going on... trail runs, park picnics, pickup games, neighborhood meetups, etc. Unfortunately, there is no single place to find it all. InIndy is a community app for people who want to get outside and connect with others in their neighborhood. Post an activity, see what's happening nearby, join a group, and show up.
 
-Available on Android and iOS from a shared Kotlin Multiplatform codebase.
+Available on Android and iOS.
 
 ---
 
