@@ -15,6 +15,8 @@
   --font-body:    'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono:    'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+  --hint-ink: #000;
+
   --gutter: clamp(1.25rem, 4vw, 2.25rem);
   --section-y: clamp(3.5rem, 8vw, 6rem);
   --hero-y: clamp(4.5rem, 10vw, 7.5rem);
@@ -33,6 +35,7 @@
   --brand-hover: #7965B8;
   --accent:   #E9A93F;
   --on-brand: #FFFFFF;
+  --hint-ink: #FFFFFF;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -47,6 +50,7 @@
     --brand-hover: #7965B8;
     --accent:   #E9A93F;
     --on-brand: #FFFFFF;
+    --hint-ink: #FFFFFF;
   }
 }
 
@@ -351,6 +355,31 @@ footer.site {
 }
 .foot-links a { color: var(--ink-2); text-decoration: none; }
 .foot-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* SCROLL HINT — mobile-only pulsing arrow at the very top of the page */
+.scroll-hint { display: none; }
+@media (max-width: 560px) {
+  .scroll-hint {
+    display: block;
+    position: fixed;
+    right: 1.25rem;
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    color: var(--hint-ink);
+    z-index: 15;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+    animation: scrollPulse 2.4s ease-in-out infinite;
+  }
+  .scroll-hint svg { width: 28px; height: 28px; display: block; }
+  .scroll-hint.is-hidden { opacity: 0; animation: none; }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint { animation: none; opacity: 0.85; }
+}
 
 /* MOTION — reduced-motion path renders final state instantly */
 @media (prefers-reduced-motion: no-preference) {

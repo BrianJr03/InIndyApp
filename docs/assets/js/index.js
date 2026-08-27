@@ -72,11 +72,32 @@ btn.addEventListener('click', function () {
 });
 syncLabel();
 
-// Nav border appears once the user has scrolled past the header.
+// Nav border and scroll-hint arrow both react to page position.
+// The hint hides once the user scrolls at all OR when the screenshots
+// below the fold have any pixel visible — whichever happens first.
 const nav = document.getElementById('nav');
-function onScroll() {
-  if (window.scrollY > 4) nav.classList.add('is-scrolled');
-  else nav.classList.remove('is-scrolled');
+const scrollHint = document.getElementById('scrollHint');
+const screensEl = document.querySelector('.screens');
+let screensVisible = false;
+
+function updateHint() {
+  if (!scrollHint) return;
+  const atTop = window.scrollY <= 4;
+  scrollHint.classList.toggle('is-hidden', !atTop || screensVisible);
 }
+
+function onScroll() {
+  nav.classList.toggle('is-scrolled', window.scrollY > 4);
+  updateHint();
+}
+
+if (scrollHint && screensEl && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(function (entries) {
+    screensVisible = entries[0].isIntersecting;
+    updateHint();
+  }, { threshold: 0.01 });
+  io.observe(screensEl);
+}
+
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
