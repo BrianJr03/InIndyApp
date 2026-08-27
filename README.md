@@ -1,33 +1,88 @@
-# InIndy
+<p align="center">
+  <img src="docs/assets/logo.svg" alt="InIndy" width="88" height="88">
+</p>
 
-Indianapolis has a lot going on... trail runs, park picnics, pickup games, neighborhood meetups, etc. Unfortunately, there is no single place to find it all. InIndy is a community app for people who want to get outside and connect with others in their neighborhood. Post an activity, see what's happening nearby, join a group, and show up.
+<h1 align="center">InIndy</h1>
 
-Available on Android and iOS.
+<p align="center">Discover what's going on InIndy.</p>
+
+<p align="center">
+  <a href="https://inindy.co"><strong>inindy.co</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://inindy.co/privacy.html">Privacy</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/BrianJr03/InIndy">App source</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:brian.walker@inindy.co">Contact</a>
+</p>
 
 ---
 
-## Features
+InIndy is where folks share trail runs, pickup games, park picnics, and whatever else is going on in Indianapolis. Find one, join it, show up.
 
-**Explore**
-- Browse activities happening across Indianapolis neighborhoods
-- Filter by your neighborhood or a specific group
-- See who's going and RSVP to activities you want to join
+Free. No ads. Made in Indy.
 
-**Post an Activity**
-- Share a run, hike, picnic, game night, or anything in between
-- Add photos, a location, date and time, and activity tags
-- Post to your neighborhood feed or a private group
+**This repository holds the InIndy website.** It's a static site published with GitHub Pages from `docs/` and served at [inindy.co](https://inindy.co). The app itself lives in [BrianJr03/InIndy](https://github.com/BrianJr03/InIndy).
 
-**Groups**
-- Create and manage groups for your regular crew
-- Invite members, post group-only activities, and see who's in
-- Search and join open groups across the city
+## The app
 
-**Me**
-- Your personal hub — all your past and upcoming posts in one place
-- Edit your profile, neighborhood, and interests
-- See your activity history
+**Neighborhoods** — Posts stay in the neighborhood they belong to, so your feed looks like your part of the city.
 
-**Neighborhoods**
-- Broad Ripple, Fountain Square, Mass Ave, Irvington, Downtown, and 40+ more Indianapolis neighborhoods
-- Posts are tied to neighborhoods so you always know where things are happening
+**Groups** — Run clubs, pickup leagues, book swaps. Join a group and its posts find you.
+
+**Photos** — See the trail, the field, the noteworthy view, before deciding to come.
+
+Two ways to use it:
+
+| If you're going | If you're hosting |
+| --- | --- |
+| Browse what's going on near you | Post the time and place |
+| See who else is in | Pick a neighborhood |
+| Show up | Connect with others |
+
+## Getting the app
+
+InIndy is in **Android beta**. It isn't on the Google Play Store yet, so builds are distributed as an APK from the [releases page](https://github.com/BrianJr03/InIndy/releases).
+
+A few things worth knowing before you sideload:
+
+- Android will ask permission to install unknown apps, and Play Protect will likely warn you. Both are expected for anything not installed from the Play Store.
+- The beta will not auto-update. New builds have to be downloaded manually.
+- Uninstall the beta before installing the eventual Play Store version — the two are signed with different keys and the upgrade will fail otherwise. Your account and posts live on the server and come back when you sign in again.
+
+Full instructions, including the SHA-256 checksum, are on [inindy.co](https://inindy.co).
+
+## Repository layout
+
+```
+docs/
+├── index.html          # Landing page
+├── privacy.html        # Privacy policy
+├── CNAME               # Custom domain (inindy.co)
+├── .nojekyll           # Serve files as-is, skip Jekyll
+└── assets/
+    ├── logo.svg        # Primary mark
+    ├── logo-mono.svg   # Single-colour mark (currentColor)
+    ├── favicon.svg
+    ├── favicon-32.png
+    ├── apple-touch-icon.png
+    └── og-image.png    # Social preview
+```
+
+Both pages are self-contained: styles and scripts are inline, and the only external dependency is Google Fonts. There is no build step and no package manager.
+
+## Running locally
+
+```bash
+python3 -m http.server 8000 --directory docs
+```
+
+Then open <http://localhost:8000>.
+
+## Privacy
+
+The website collects nothing — no analytics, no tracking scripts, no cookies, no forms. What the app collects is documented in the [privacy policy](https://inindy.co/privacy.html).
+
+---
+
+© 2026 InIndy · Made with 💜
