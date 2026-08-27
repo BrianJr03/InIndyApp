@@ -254,11 +254,11 @@ h1.headline {
 }
 .block p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
 
-/* APP SCREENS — horizontal snap carousel at every viewport */
+/* APP SCREENS — three-across on desktop, single-item carousel on narrow viewports */
 .screens {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   gap: clamp(1rem, 3vw, 2rem);
   overflow-x: auto;
@@ -267,18 +267,28 @@ h1.headline {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   margin-bottom: clamp(2.5rem, 7vw, 4.5rem);
-  padding: 0.5rem calc((100% - min(340px, 75vw)) / 2) 1rem;
-  scroll-padding-inline: calc((100% - min(340px, 75vw)) / 2);
+  padding-block: 0.5rem 1rem;
 }
 .screens::-webkit-scrollbar { display: none; }
 .screen {
   margin: 0;
-  flex: 0 0 min(340px, 75vw);
+  flex: 0 0 clamp(220px, 24vw, 300px);
   scroll-snap-align: center;
   text-align: center;
 }
 .screen img { width: 100%; height: auto; display: block; }
 .screen figcaption { margin-top: 1rem; color: var(--ink-3); }
+
+/* Narrow viewports: one phone at a time with peek on either side */
+@media (max-width: 900px) {
+  .screens {
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-inline: calc((100% - min(320px, 75vw)) / 2);
+    scroll-padding-inline: calc((100% - min(320px, 75vw)) / 2);
+  }
+  .screen { flex-basis: min(320px, 75vw); }
+}
 
 /* TWO WAYS */
 .two-ways {
