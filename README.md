@@ -20,7 +20,7 @@ InIndy is where folks share trail runs, pickup games, park picnics, and whatever
 
 Free. No ads. Made in Indy.
 
-**This repository holds the InIndy website.** It's a static site published with GitHub Pages from `docs/` and served at [inindy.co](https://inindy.co). The app itself lives in [BrianJr03/InIndy](https://github.com/BrianJr03/InIndy).
+**This repository holds the InIndy website.** It's a static site published with GitHub Pages from `docs/` and served at [inindy.co](https://inindy.co).
 
 ## The app
 
