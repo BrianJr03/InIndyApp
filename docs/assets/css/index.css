@@ -248,6 +248,25 @@ h1.headline {
 }
 .block p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
 
+/* APP SCREENS */
+.screens{display:flex;gap:clamp(1.5rem,5vw,3rem);justify-content:center;
+  align-items:flex-start;flex-wrap:wrap;margin-bottom:clamp(2.5rem,7vw,4.5rem)}
+.screen{margin:0;flex:0 1 260px;max-width:300px;text-align:center}
+.screen img{width:100%;height:auto;display:block;
+  filter:drop-shadow(0 18px 40px rgba(0,0,0,.28))}
+.screen figcaption{margin-top:1rem;color:var(--ink-3)}
+@media (max-width:900px){.screen{flex-basis:220px}}
+@media (max-width:700px){
+  .screens{flex-wrap:nowrap;justify-content:flex-start;gap:1rem;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin-inline:calc(var(--gutter) * -1);
+    padding:0.5rem 15% 3rem;
+    scroll-padding-inline:15%}
+  .screens::-webkit-scrollbar{display:none}
+  .screen{flex:0 0 70%;max-width:none;scroll-snap-align:center}
+}
+
 /* TWO WAYS */
 .two-ways {
   display: grid;

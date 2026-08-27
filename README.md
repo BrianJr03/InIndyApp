@@ -40,7 +40,7 @@ Two ways to use it:
 
 ## Getting the app
 
-InIndy is in **Android beta**. It isn't on the Google Play Store yet, so builds are distributed as an APK from the [releases page](https://github.com/BrianJr03/InIndy/releases).
+InIndy is in **Android beta**. It isn't on the Google Play Store yet, so builds are distributed as an APK from the [releases page](https://github.com/BrianJr03/InIndyApp/releases).
 
 A few things worth knowing before you sideload:
 

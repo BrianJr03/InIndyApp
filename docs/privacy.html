@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Privacy — InIndy</title>
 <meta name="description" content="How InIndy handles your data. No ads, no trackers, no data collected by this website.">
-<link rel="canonical" href="https://brianjr03.github.io/InIndy/privacy.html">
+<link rel="canonical" href="https://inindy.co/privacy.html">
 
 <meta name="theme-color" content="#EDEFEA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -70,15 +70,30 @@
     <ul>
       <li><strong>Your email address</strong>, for sign in. InIndy uses passwordless magic-link authentication &mdash; we send a one-time link to your email, and tapping it signs you in. Your email is stored so we can find your account on subsequent sign-ins.</li>
       <li><strong>Your display name and avatar</strong>, if you provide them. Both are optional and both are visible to other InIndy users who see your posts or groups.</li>
-      <li><strong>The neighborhood you select</strong>, so the app can show you the right feed.</li>
-      <li><strong>Posts and activities you create</strong>: title, description, time, address, and the coordinates of the event location. These are visible to other InIndy users in your neighborhood, or to members of the group you posted to.</li>
+      <li><strong>The neighborhood you belong to</strong>, so the app can show you the right feed and route posts you mark as neighborhood-visible to the right audience.</li>
+      <li><strong>Posts you create</strong>: title, description, time, and a specific street address for the event. See <a href="#location">Location</a> below for how that address is determined. Each post has a <em>Who can see this?</em> visibility setting that you choose; see <a href="#post-visibility">Post visibility</a>.</li>
+      <li><strong>Groups you join, and your role in each group</strong> (for example, member or admin). Group membership and role are stored so the app can enforce group-only post visibility and display member counts.</li>
+      <li><strong>Your attendance history</strong>: when you attend an event, the app records the event, the host, and the date, and shows them on your profile as your attendance history. <!-- TODO(privacy): confirm whether attendance history is visible to anyone other than the user themselves (e.g. the host, other attendees, group members). The app source is not in this repo, so this could not be verified from here. --></li>
       <li><strong>Photos you attach to posts, groups, or your profile</strong>. Photos are compressed on your device before upload and stored via Cloudflare R2 behind a public CDN URL.</li>
-      <li><strong>RSVPs and attendance records</strong> for posts, so hosts can see who is coming.</li>
+      <li><strong>RSVPs</strong> for posts, so hosts can see who is coming.</li>
     </ul>
 
-    <h2>Location</h2>
-    <p>InIndy asks for location access only when you tap the &ldquo;use current location&rdquo; option while creating a post. When you do, the app reads your device&rsquo;s coordinates once and uses them to pre-fill the event&rsquo;s address; the coordinates saved with the post are the event&rsquo;s location, not a continuous record of yours. If you type the address in manually, the app does not request location permission at all.</p>
-    <p>The app does not track your location in the background, and it does not store a location history for your account.</p>
+    <h2 id="location">Location</h2>
+    <p>Location data in InIndy is <strong>precise</strong>, not neighborhood-approximate: when you attach a location to a post, it identifies a specific place (for example, &ldquo;Monument Circle, Indianapolis, IN&rdquo;), not just the neighborhood.</p>
+    <p>There are two ways to attach a location when you create a post:</p>
+    <ul>
+      <li><strong>Use my location.</strong> Tapping this asks the operating system for permission to read your device&rsquo;s coordinates. The app reads them once, resolves them to a street address, and pre-fills the post with that address. The app does not track your location in the background and does not keep a location history for your account.</li>
+      <li><strong>Search an address.</strong> Typing here sends your query to a third-party address / places lookup service, which returns matching addresses. The address you pick is stored with the post. <!-- TODO(privacy): identify the geocoding / places provider used for address search (Google Places, Mapbox, Nominatim, etc.), name it here, and add it to the "Where your data lives" list. The app source is not in this repo, so this could not be verified from here. --></li>
+    </ul>
+    <p>Whichever method you use, the location stored with the post is the event&rsquo;s location, and it is visible to whoever the post&rsquo;s visibility setting allows &mdash; not to InIndy users at large. <!-- TODO(privacy): confirm whether precise device coordinates from "Use my location" are persisted on the server alongside the resolved address, or whether only the resolved address string is stored. The two have different disclosure implications. --></p>
+
+    <h2 id="post-visibility">Post visibility</h2>
+    <p>Every post has a <em>Who can see this?</em> setting that you choose when you create it. In practice this controls which audience the post is shown to:</p>
+    <ul>
+      <li><strong>My neighborhood</strong> &mdash; the post appears in the neighborhood feed for other InIndy users in the same neighborhood you belong to.</li>
+      <li><strong>A group</strong> &mdash; the post is visible only to members of the specific group you posted it to. Non-members cannot see it, even if they are in the same neighborhood.</li>
+    </ul>
+    <p>You choose this for each post individually. The post row and its media are stored on our infrastructure regardless of the setting, but Supabase&rsquo;s row-level security enforces the audience: non-members of a private group cannot read that group&rsquo;s posts at the database layer.</p>
 
     <h2>Where your data lives</h2>
     <ul>
@@ -108,7 +123,7 @@
     <h2>Contact</h2>
     <p>Questions, requests, or corrections: <a href="mailto:brian.walker@inindy.co">brian.walker@inindy.co</a>.</p>
 
-    <p class="updated">Effective date &mdash; August 26, 2026</p>
+    <p class="updated">Effective date &mdash; August 27, 2026</p>
   </div>
 </main>
 
@@ -118,7 +133,7 @@
     <div class="foot-links">
       <a href="./index.html">Home</a>
       <a href="mailto:brian.walker@inindy.co">brian.walker@inindy.co</a>
-      <a href="https://github.com/BrianJr03/InIndy" rel="noopener">GitHub</a>
+      <a href="https://github.com/BrianJr03/InIndyApp" rel="noopener">GitHub</a>
     </div>
   </div>
 </footer>
