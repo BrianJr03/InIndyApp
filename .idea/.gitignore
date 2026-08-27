@@ -1,3 +1,12 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/firebender/chat_history.db
+/firebender/chat_history.db-shm
+/firebender/chat_history.db-wal
+/caches/deviceStreaming.xml
+/InIndyApp.iml
+/markdown.xml
+/misc.xml
+/modules.xml
+/vcs.xml
