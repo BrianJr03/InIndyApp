@@ -25,6 +25,7 @@ function iosButton() {
   s.textContent = 'iOS beta — opening soon';
   return s;
 }
+
 function androidButton() {
   const a = document.createElement('a');
   a.className = 'btn btn-primary';
@@ -32,11 +33,13 @@ function androidButton() {
   a.textContent = 'Join the Android beta';
   return a;
 }
+
 function renderCtaInto(row) {
   if (!row) return;
   row.appendChild(iosButton());
   row.appendChild(androidButton());
 }
+
 renderCtaInto(document.getElementById('ctaTop'));
 
 const releaseLink = document.getElementById('releaseLink');
@@ -48,16 +51,19 @@ const btn = document.getElementById('themeToggle');
 const icon = document.getElementById('themeIcon');
 const MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 const SUN  = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+
 function currentTheme() {
   const t = root.getAttribute('data-theme');
   if (t) return t;
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
+
 function syncLabel() {
   const isDark = currentTheme() === 'dark';
   icon.innerHTML = isDark ? SUN : MOON;
   btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
 }
+
 btn.addEventListener('click', function () {
   const next = currentTheme() === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
