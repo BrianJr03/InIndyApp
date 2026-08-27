@@ -80,6 +80,7 @@
 
   <section class="section">
     <div class="container">
+      <h2 class="mono kicker">The app</h2>
       <div class="screens">
         <figure class="screen">
           <picture>
@@ -107,7 +108,6 @@
         </figure>
       </div>
 
-      <p class="mono kicker">The app</p>
       <div class="blocks">
         <article class="block">
           <p class="mono">Neighborhoods</p>
@@ -130,7 +130,7 @@
 
   <section class="section">
     <div class="container">
-      <p class="mono kicker">Two ways to use it</p>
+      <h2 class="mono kicker">Two ways to use it</h2>
       <div class="two-ways">
         <div class="way">
           <p class="mono">If you're going</p>
@@ -154,17 +154,18 @@
     </div>
   </section>
 
-<!--  <section class="section">-->
-<!--    <div class="container">-->
-<!--      <p class="mono kicker">Neighborhoods</p>-->
-<!--      <p class="hoods">Beech Grove &middot; Carmel &middot; Castleton &middot; Crown Hill &middot; Fall Creek Place &middot; Fishers &middot; Geist &middot; Golden Hill &middot; Greenwood &middot; High School Road &middot; Mapleton-Fall Creek &middot; Mars Hill &middot; Near Eastside &middot; Near Northside &middot; Near Westside &middot; Nora &middot; Riverside &middot; Southport &middot; Speedway &middot; University Heights &middot; Wayne &middot; Westfield &middot; White River State Park Area &middot; Woodruff Place &middot; Zionsville</p>-->
-<!--    </div>-->
-<!--  </section>-->
+  <section class="section cta-close">
+    <div class="container">
+      <h2 class="mono kicker">Get in early</h2>
+      <p class="cta-lead">The beta is small on purpose. Tell us what breaks.</p>
+      <div class="cta-row" id="ctaBottom"></div>
+    </div>
+  </section>
 
   <section class="section android-setup" id="android-setup">
     <div class="container">
-      <p class="mono kicker">Android beta</p>
-      <h2>Installing the APK</h2>
+      <h2 class="mono kicker">Android beta</h2>
+      <h3>Installing the APK</h3>
       <ol>
         <li>Open the release page using <a id="releaseLink" href="#" target="_blank" rel="noopener">this link</a>.</li>
         <li>Under <strong>Assets</strong>, tap the <code>inindy-beta.apk</code> file to download it.</li>
@@ -179,10 +180,22 @@
         <p><strong>Play Protect will probably warn you.</strong> Google flags anything not installed from the Play Store. Tap &ldquo;More details&rdquo; and then install anyway. If you would rather verify first, the SHA-256 checksum is published on the release page.</p>
       </div>
       <div class="warn">
-        <p><strong>The app will not auto-update.</strong> There is no store connection, so new builds have to be downloaded manually. Watch the releases page, or the email you got with the build.</p>
+        <p><strong>Uninstall the beta before installing the Play Store version.</strong> The two are signed with different keys, so the upgrade will fail with a signature error otherwise. Anything stored only on the device will be lost. Your account and posts are on the server and will come back when you sign in again.</p>
       </div>
       <div class="warn">
-        <p><strong>Uninstall the beta before installing the Play Store version.</strong> The two are signed with different keys, so the upgrade will fail with a signature error otherwise. Anything stored only on the device will be lost. Your account and posts are on the server and will come back when you sign in again.</p>
+        <p><strong>The app will not auto-update.</strong> There is no store connection, so new builds have to be downloaded manually. Watch the releases page, or the email you got with the build.</p>
+        <details class="note">
+          <summary>Learn how to enable auto-update with Obtainium</summary>
+          <div class="note-body">
+            <p><a href="https://github.com/ImranR98/Obtainium" target="_blank" rel="noopener">Obtainium</a> is a free, open-source app that watches a project&rsquo;s GitHub releases and tells you when there&rsquo;s a new build.</p>
+            <ol>
+              <li>Install Obtainium from <a href="https://github.com/ImranR98/Obtainium/releases" target="_blank" rel="noopener">GitHub</a>, <a href="https://f-droid.org/en/packages/dev.imranr.obtainium.fdroid/" target="_blank" rel="noopener">F-Droid</a>, or <a href="https://apt.izzysoft.de/fdroid/index/apk/dev.imranr.obtainium" target="_blank" rel="noopener">IzzyOnDroid</a>.</li>
+              <li>Open it and tap <strong>Add App</strong>.</li>
+              <li>Paste <code>https://github.com/BrianJr03/InIndyApp</code> and tap <strong>Add</strong>.</li>
+            </ol>
+            <p>Obtainium will now check for new InIndy builds and send you a notification when one lands. Tap it to install.</p>
+          </div>
+        </details>
       </div>
     </div>
   </section>

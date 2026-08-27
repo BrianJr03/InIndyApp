@@ -28,9 +28,9 @@ function iosButton() {
 
 function androidButton() {
   const a = document.createElement('a');
-  a.className = 'btn btn-primary';
+  a.className = 'btn btn-secondary';
   a.href = '#android-setup';
-  a.textContent = 'Join the Android beta';
+  a.innerHTML = 'Join the Android beta <span class="btn-arrow" aria-hidden="true">&darr;</span>';
   return a;
 }
 
@@ -41,6 +41,7 @@ function renderCtaInto(row) {
 }
 
 renderCtaInto(document.getElementById('ctaTop'));
+renderCtaInto(document.getElementById('ctaBottom'));
 
 const releaseLink = document.getElementById('releaseLink');
 if (releaseLink) releaseLink.href = BETA.android;

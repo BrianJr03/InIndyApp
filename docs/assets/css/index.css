@@ -97,6 +97,7 @@ code {
 .mono {
   font-family: var(--font-mono);
   font-size: 0.78rem;
+  font-weight: 400;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--ink-3);
@@ -215,6 +216,25 @@ h1.headline {
   color: var(--on-brand);
 }
 .btn-primary:hover { background: var(--brand-hover); color: var(--on-brand); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent;
+  color: var(--brand-text);
+  border: 1px solid var(--brand-text);
+}
+.btn-secondary:hover {
+  background: color-mix(in srgb, var(--brand-text) 12%, transparent);
+  color: var(--brand-text);
+}
+.btn-arrow {
+  display: inline-block;
+  margin-left: .4rem;
+  transition: transform .18s ease;
+}
+.btn-secondary:hover .btn-arrow { transform: translateY(2px); }
+@media (prefers-reduced-motion: reduce) {
+  .btn-arrow { transition: none; }
+  .btn-secondary:hover .btn-arrow { transform: none; }
+}
 .btn-disabled {
   background: transparent;
   color: var(--ink-3);
@@ -222,16 +242,6 @@ h1.headline {
   cursor: not-allowed;
   pointer-events: none;
 }
-.setup-link {
-  display: block;
-  width: fit-content;
-  margin: 8px auto 0;
-  color: var(--ink-3);
-  font-size: 0.9rem;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.setup-link:hover { color: var(--ink); }
 .hero-foot { margin-top: 1.25rem; }
 
 /* WHAT IT DOES */
@@ -319,18 +329,9 @@ h1.headline {
   padding-top: 8px;
 }
 
-/* NEIGHBORHOODS */
-.hoods {
-  font-family: var(--font-mono);
-  color: var(--ink-3);
-  font-size: 0.86rem;
-  letter-spacing: 0.04em;
-  line-height: 1.9;
-}
-
 /* ANDROID SETUP */
 .android-setup { border-top: 1px solid var(--line); padding-top: var(--section-y); }
-.android-setup h2 {
+.android-setup h3 {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.6rem, 3.5vw, 2.1rem);
@@ -346,10 +347,35 @@ h1.headline {
   color: var(--ink-2);
 }
 .warn strong { color: var(--ink); font-weight: 600; }
-.android-setup .foot-link { display: inline-block; margin-top: 1rem; }
+.note{margin-top:.9rem;border-top:1px solid var(--line);padding-top:.9rem}
+.note summary{cursor:pointer;color:var(--brand-text);font-weight:500;
+  list-style:none;display:flex;align-items:center;gap:.5rem}
+.note summary::-webkit-details-marker{display:none}
+.note summary::before{content:"";width:.42rem;height:.42rem;flex:none;
+  border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:rotate(-45deg);transition:transform .18s ease;margin-left:.1rem}
+.note[open] summary::before{transform:rotate(45deg)}
+.note summary:focus-visible{outline:2px solid var(--brand-text);outline-offset:3px;
+  border-radius:3px}
+.note-body{margin-top:.75rem;color:var(--ink-2)}
+.note-body ol{margin:.6rem 0;padding-left:1.2rem}
+.note-body li{margin:.35rem 0}
+.note-body code{font-family:'DM Mono',ui-monospace,monospace;font-size:.88em;
+  background:var(--paper-2);padding:.12em .4em;border-radius:4px;
+  overflow-wrap:anywhere}
+.note{interpolate-size:allow-keywords}
+.note::details-content{opacity:0;block-size:0;overflow:hidden;
+  transition:content-visibility .28s allow-discrete,opacity .22s ease,block-size .28s ease}
+.note[open]::details-content{opacity:1;block-size:auto}
+@media (prefers-reduced-motion:reduce){.note summary::before,.note::details-content{transition:none}}
 
-/* SECTION HEADS */
-.kicker { margin-bottom: 0.5rem; }
+/* SECTION HEADS — kicker may be either <p> or <h2>, so reset browser h2 margins */
+.kicker { margin: 1em 0 0.5rem; }
+
+/* CLOSING CTA */
+.cta-close { text-align: center; }
+.cta-close .cta-row { justify-content: center; }
+.cta-lead { margin: .6rem 0 1.8rem; color: var(--ink-2); }
 
 /* FOOTER */
 footer.site {
