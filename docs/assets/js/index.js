@@ -99,5 +99,11 @@ if (scrollHint && screensEl && 'IntersectionObserver' in window) {
   io.observe(screensEl);
 }
 
+if (scrollHint && screensEl) {
+  scrollHint.addEventListener('click', function () {
+    screensEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
