@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>InIndy</title>
+<meta name="description" content="InIndy is where Indianapolis posts the trail runs, pickup games, park picnics and more happening nearby. Find one, join it, show up.">
+<link rel="canonical" href="https://brianjr03.github.io/InIndy/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="InIndy">
+<meta property="og:title" content="InIndy — Your neighborhood is already doing something today.">
+<meta property="og:description" content="Where Indianapolis posts the trail runs, pickup games, park picnics and more happening nearby.">
+<meta property="og:url" content="https://brianjr03.github.io/InIndy/">
+<meta property="og:image" content="https://brianjr03.github.io/InIndy/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="InIndy — Your neighborhood is already doing something today.">
+<meta name="twitter:description" content="Where Indianapolis posts the trail runs, pickup games, park picnics and more happening nearby.">
+<meta name="twitter:image" content="https://brianjr03.github.io/InIndy/assets/og-image.png">
+
+<meta name="theme-color" content="#EDEFEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+
+<script>
+  // Apply stored theme before paint — avoids a flash on load.
+  (function () {
+    try {
+      var t = localStorage.getItem('inindy-theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper:    #EDEFEA;
+    --paper-2:  #F7F8F4;
+    --ink:      #16211C;
+    --ink-2:    #4A5852;
+    --ink-3:    #7C8A84;
+    --line:     rgba(22,33,28,0.14);
+    --brand:    #6750A4;
+    --brand-text: #6750A4;
+    --brand-hover: #5B4590;
+    --accent:   #9C5D0C;
+    --on-brand: #FFFFFF;
+
+    --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-body:    'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono:    'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    --gutter: clamp(1.25rem, 4vw, 2.25rem);
+    --section-y: clamp(3.5rem, 8vw, 6rem);
+    --hero-y: clamp(4.5rem, 10vw, 7.5rem);
+    --max: 1160px;
+    --radius: 14px;
+  }
+  [data-theme="dark"] {
+    --paper:    #000000;
+    --paper-2:  #0D0B10;
+    --ink:      #E7EDE8;
+    --ink-2:    #A2B1AA;
+    --ink-3:    #6F807A;
+    --line:     rgba(230,225,233,0.18);
+    --brand:    #6750A4;
+    --brand-text: #D0BCFF;
+    --brand-hover: #7965B8;
+    --accent:   #E9A93F;
+    --on-brand: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:    #000000;
+      --paper-2:  #0D0B10;
+      --ink:      #E7EDE8;
+      --ink-2:    #A2B1AA;
+      --ink-3:    #6F807A;
+      --line:     rgba(230,225,233,0.18);
+      --brand:    #6750A4;
+      --brand-text: #D0BCFF;
+      --brand-hover: #7965B8;
+      --accent:   #E9A93F;
+      --on-brand: #FFFFFF;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+
+  a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--brand-text); }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: 1px 6px;
+    border-radius: 6px;
+  }
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--brand-text);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .section { padding-top: var(--section-y); padding-bottom: var(--section-y); }
+
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* NAV */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in oklab, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease;
+  }
+  header.nav.is-scrolled { border-bottom-color: var(--line); }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .brand-lock {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--brand-text);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    font-size: 1.15rem;
+  }
+  .brand-lock svg { width: 28px; height: 28px; }
+  .theme-toggle {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    height: 38px;
+    width: 38px;
+    padding: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .theme-toggle:hover { border-color: var(--ink-3); }
+  .theme-toggle svg { width: 18px; height: 18px; }
+
+  /* HERO */
+  .hero {
+    padding-top: var(--hero-y);
+    padding-bottom: var(--hero-y);
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+  .hero-logo {
+    width: clamp(140px, 26vw, 260px);
+    height: auto;
+    margin: 0 0 1.5rem;
+  }
+  h1.headline {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 7vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+    color: var(--ink);
+    max-width: 18ch;
+  }
+  .subhead {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    color: var(--ink-2);
+    max-width: 34ch;
+    margin: 0 0 1.75rem;
+  }
+  .cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 0 1rem;
+    justify-content: center;
+  }
+  @media (min-width: 560px) {
+    .cta-row { flex-direction: row; }
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 120ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+  @media (max-width: 559px) { .btn { width: 100%; } }
+  .btn-primary {
+    background: var(--brand);
+    color: var(--on-brand);
+  }
+  .btn-primary:hover { background: var(--brand-hover); color: var(--on-brand); transform: translateY(-1px); }
+  .btn-disabled {
+    background: transparent;
+    color: var(--ink-3);
+    border-color: var(--line);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .setup-link {
+    display: block;
+    width: fit-content;
+    margin: 8px auto 0;
+    color: var(--ink-3);
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .setup-link:hover { color: var(--ink); }
+  .hero-foot { margin-top: 1.25rem; }
+
+  /* WHAT IT DOES */
+  .blocks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+  @media (min-width: 700px) { .blocks { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .blocks { grid-template-columns: repeat(4, 1fr); } }
+  .block { border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .block h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.2;
+    margin: 0.4rem 0 0.5rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .block p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+
+  /* TWO WAYS */
+  .two-ways {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 4vw, 2.5rem);
+  }
+  @media (min-width: 800px) { .two-ways { grid-template-columns: 1fr 1fr; } }
+  .way h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 0.4rem 0 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .way p { color: var(--ink-2); margin: 0; }
+  .way .steps {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    color: var(--ink);
+    font-size: 1.02rem;
+  }
+  .way .steps li {
+    border-top: 1px solid var(--line);
+    padding-top: 8px;
+  }
+
+  /* NEIGHBORHOODS */
+  .hoods {
+    font-family: var(--font-mono);
+    color: var(--ink-3);
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+    line-height: 1.9;
+  }
+
+  /* ANDROID SETUP */
+  .android-setup { border-top: 1px solid var(--line); padding-top: var(--section-y); }
+  .android-setup h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+    letter-spacing: -0.01em;
+    margin: 0.5rem 0 1.25rem;
+  }
+  .android-setup ol { margin: 0 0 1.75rem; padding-left: 1.25rem; color: var(--ink); }
+  .android-setup ol li { margin-bottom: 0.5rem; }
+  .warn {
+    border-left: 2px solid var(--line);
+    padding: 0.25rem 0 0.25rem 1rem;
+    margin: 1rem 0;
+    color: var(--ink-2);
+  }
+  .warn strong { color: var(--ink); font-weight: 600; }
+  .android-setup .foot-link { display: inline-block; margin-top: 1rem; }
+
+  /* SECTION HEADS */
+  .kicker { margin-bottom: 0.5rem; }
+
+  /* FOOTER */
+  footer.site {
+    border-top: 1px solid var(--line);
+    margin-top: var(--section-y);
+    padding: 2rem 0 3rem;
+  }
+  .foot-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--ink-3);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .foot-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  .foot-links a { color: var(--ink-2); text-decoration: none; }
+  .foot-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* MOTION — reduced-motion path renders final state instantly */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-logo,
+    h1.headline,
+    .subhead {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: heroRise 400ms cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    h1.headline { animation-delay: 120ms; }
+    .subhead { animation-delay: 220ms; }
+  }
+  @keyframes heroRise { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-row">
+    <a class="brand-lock" href="./index.html" aria-label="InIndy home">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="5"/>
+        <g fill="currentColor" transform="translate(-4 0)">
+          <rect x="35" y="35" width="8" height="34" rx="1.2"/>
+          <path d="M49 47 h7.6 v3.4 c1.7 -2.6 4.6 -3.8 7.6 -3.8 c5.2 0 8.8 3.6 8.8 9.4 V69 h-7.6 V57.6 c0 -2.8 -1.7 -4.5 -4.2 -4.5 c-2.6 0 -4.6 1.9 -4.6 5.1 V69 H49 z"/>
+        </g>
+      </svg>
+      <span>InIndy</span>
+    </a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="section hero">
+    <div class="container hero-inner">
+      <img class="hero-logo" src="./assets/logo.svg" alt="InIndy" width="260" height="260">
+      <h1 class="headline">Discover what's going on InIndy.</h1>
+      <p class="subhead">InIndy is where folks share trail runs, pickup games, park picnics and whatever else going on in Indianapolis.</p>
+
+      <div class="cta-row" id="ctaTop"></div>
+      <p class="mono hero-foot">Free. No ads. Made in Indy.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="mono kicker">The app</p>
+      <div class="blocks">
+        <article class="block">
+          <p class="mono">Neighborhoods</p>
+          <h3>Sorted by where you live.</h3>
+          <p>Posts stay in the neighborhood they belong to, so your feed looks like your part of the city.</p>
+        </article>
+        <article class="block">
+          <p class="mono">Groups</p>
+          <h3>Somewhere to keep coming back to.</h3>
+          <p>Run clubs, pickup leagues, book swaps. Join a group and its posts find you.</p>
+        </article>
+        <article class="block">
+          <p class="mono">Photos</p>
+          <h3>A little less guesswork.</h3>
+          <p>Photos let people see the trail, the field, the noteworthy view, before deciding to come.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="mono kicker">Two ways to use it</p>
+      <div class="two-ways">
+        <div class="way">
+          <p class="mono">If you're going</p>
+          <h3>No plan required.</h3>
+          <ul class="steps">
+            <li>Browse what's going on near you.</li>
+            <li>See who else is in.</li>
+            <li>Show up.</li>
+          </ul>
+        </div>
+        <div class="way">
+          <p class="mono">If you're hosting</p>
+          <h3>Easily connect with nearby folks.</h3>
+          <ul class="steps">
+            <li>Post the time and place.</li>
+            <li>Pick a neighborhood.</li>
+            <li>Connect with others.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!--  <section class="section">-->
+<!--    <div class="container">-->
+<!--      <p class="mono kicker">Neighborhoods</p>-->
+<!--      <p class="hoods">Beech Grove &middot; Carmel &middot; Castleton &middot; Crown Hill &middot; Fall Creek Place &middot; Fishers &middot; Geist &middot; Golden Hill &middot; Greenwood &middot; High School Road &middot; Mapleton-Fall Creek &middot; Mars Hill &middot; Near Eastside &middot; Near Northside &middot; Near Westside &middot; Nora &middot; Riverside &middot; Southport &middot; Speedway &middot; University Heights &middot; Wayne &middot; Westfield &middot; White River State Park Area &middot; Woodruff Place &middot; Zionsville</p>-->
+<!--    </div>-->
+<!--  </section>-->
+
+  <section class="section android-setup" id="android-setup">
+    <div class="container">
+      <p class="mono kicker">Android beta</p>
+      <h2>Installing the APK</h2>
+      <ol>
+        <li>Open the release page using <a id="releaseLink" href="#" target="_blank" rel="noopener">this link</a>.</li>
+        <li>Under <strong>Assets</strong>, tap the <code>inindy-beta.apk</code> file to download it.</li>
+        <li>Your browser will ask for permission to install unknown apps. Grant it. This is a per-app Android permission, and you can revoke it afterward.</li>
+        <li>Open the downloaded file and install.</li>
+      </ol>
+
+      <div class="warn">
+        <p><strong>Play Protect will probably warn you.</strong> Google flags anything not installed from the Play Store. Tap &ldquo;More details&rdquo; and then install anyway. If you would rather verify first, the SHA-256 checksum is published on the release page.</p>
+      </div>
+      <div class="warn">
+        <p><strong>The app will not auto-update.</strong> There is no store connection, so new builds have to be downloaded manually. Watch the releases page, or the email you got with the build.</p>
+      </div>
+      <div class="warn">
+        <p><strong>Uninstall the beta before installing the Play Store version.</strong> The two are signed with different keys, so the upgrade will fail with a signature error otherwise. Anything stored only on the device will be lost. Your account and posts are on the server and will come back when you sign in again.</p>
+      </div>
+      <div class="warn">
+        <p><strong>We're working on releasing the Android version on the Google Play Store.</strong> In the meantime, users must download the official app from our GitHub page. Nonetheless, you'll always be able to find the latest builds <a href="https://github.com/BrianJr03/InIndy/releases" rel="noopener">here</a>.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="container foot-row">
+    <div>&copy; 2026 InIndy &middot; Made with 💜</div>
+    <div class="foot-links">
+      <a href="./privacy.html">Privacy</a>
+      <a href="mailto:brian.walker@inindy.co">Contact Us</a>
+      <a href="https://github.com/BrianJr03/InIndy" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Beta configuration — the only two knobs on this page.
+  // iOS: TestFlight public link. Requires the build to have cleared Beta App Review —
+  // leave null until it has, and the button renders in its muted "opening soon" state.
+  // Android: GitHub Releases page for the latest build. `releases/latest` always
+  // resolves to the newest published release, where users pick the APK from Assets.
+  const BETA = {
+    ios:     "https://testflight.apple.com/join/Wab2AKJM",
+    android: "https://github.com/BrianJr03/InIndy/releases/latest",
+  };
+
+  function iosButton() {
+    if (BETA.ios) {
+      const a = document.createElement('a');
+      a.className = 'btn btn-primary';
+      a.href = BETA.ios;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = 'Join the iOS beta';
+      return a;
+    }
+    const s = document.createElement('span');
+    s.className = 'btn btn-disabled';
+    s.setAttribute('aria-disabled', 'true');
+    s.setAttribute('tabindex', '-1');
+    s.textContent = 'iOS beta — opening soon';
+    return s;
+  }
+  function androidButton() {
+    const a = document.createElement('a');
+    a.className = 'btn btn-primary';
+    a.href = '#android-setup';
+    a.textContent = 'Join the Android beta';
+    return a;
+  }
+  function renderCtaInto(row) {
+    if (!row) return;
+    row.appendChild(iosButton());
+    row.appendChild(androidButton());
+  }
+  renderCtaInto(document.getElementById('ctaTop'));
+
+  const releaseLink = document.getElementById('releaseLink');
+  if (releaseLink) releaseLink.href = BETA.android;
+
+  // Theme toggle — persists via localStorage, gracefully fails in sandboxed contexts.
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+  const MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  const SUN  = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+  function currentTheme() {
+    const t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function syncLabel() {
+    const isDark = currentTheme() === 'dark';
+    icon.innerHTML = isDark ? SUN : MOON;
+    btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  btn.addEventListener('click', function () {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('inindy-theme', next); } catch (e) {}
+    syncLabel();
+  });
+  syncLabel();
+
+  // Nav border appears once the user has scrolled past the header.
+  const nav = document.getElementById('nav');
+  function onScroll() {
+    if (window.scrollY > 4) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
