@@ -11,8 +11,6 @@
   &nbsp;·&nbsp;
   <a href="https://inindy.co/privacy.html">Privacy</a>
   &nbsp;·&nbsp;
-  <a href="https://github.com/BrianJr03/InIndy">App source</a>
-  &nbsp;·&nbsp;
   <a href="mailto:brian.walker@inindy.co">Contact</a>
 </p>
 
