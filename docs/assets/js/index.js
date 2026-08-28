@@ -1,11 +1,12 @@
-// Beta configuration — the only two knobs on this page.
+// Beta configuration — the only knobs on this page.
 // iOS: TestFlight public link. Requires the build to have cleared Beta App Review —
 // leave null until it has, and the button renders in its muted "opening soon" state.
-// Android: GitHub Releases page for the latest build. `releases/latest` always
-// resolves to the newest published release, where users pick the APK from Assets.
+// Android: direct APK download. `releases/latest/download/<file>` always resolves to
+// the newest published stable release (GitHub excludes prereleases from `latest`).
 const BETA = {
-  ios:     "https://testflight.apple.com/join/Wab2AKJM",
-  android: "https://github.com/BrianJr03/InIndyApp/releases/latest",
+  ios:         "https://testflight.apple.com/join/Wab2AKJM",
+  androidApk:  "https://github.com/BrianJr03/InIndyApp/releases/latest/download/inindy.apk",
+  androidPage: "https://github.com/BrianJr03/InIndyApp/releases/latest",
 };
 
 function iosButton() {
@@ -43,8 +44,22 @@ function renderCtaInto(row) {
 renderCtaInto(document.getElementById('ctaTop'));
 renderCtaInto(document.getElementById('ctaBottom'));
 
+const apkLink = document.getElementById('apkDownload');
+if (apkLink) apkLink.href = BETA.androidApk;
 const releaseLink = document.getElementById('releaseLink');
-if (releaseLink) releaseLink.href = BETA.android;
+if (releaseLink) releaseLink.href = BETA.androidPage;
+
+// Populate the version badge from docs/version.json, committed by the release
+// workflow. Silent no-op if the file is missing or the fetch fails — the
+// download still works via the stable /releases/latest/download/inindy.apk URL.
+fetch('./version.json', { cache: 'no-cache' })
+  .then(function (r) { return r.ok ? r.json() : null; })
+  .then(function (v) {
+    if (!v || !v.versionName) return;
+    const el = document.getElementById('latestVersion');
+    if (el) el.textContent = ' — v' + v.versionName;
+  })
+  .catch(function () {});
 
 // Theme toggle — persists via localStorage, gracefully fails in sandboxed contexts.
 const root = document.documentElement;
