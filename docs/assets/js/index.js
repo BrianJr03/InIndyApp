@@ -13,10 +13,8 @@ function iosButton() {
   if (BETA.ios) {
     const a = document.createElement('a');
     a.className = 'btn btn-primary';
-    a.href = BETA.ios;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.textContent = 'Join the iOS beta';
+    a.href = '#ios-setup';
+    a.innerHTML = 'Join the iOS beta <span class="btn-arrow" aria-hidden="true">&darr;</span>';
     return a;
   }
   const s = document.createElement('span');
@@ -48,6 +46,8 @@ const apkLink = document.getElementById('apkDownload');
 if (apkLink) apkLink.href = BETA.androidApk;
 const releaseLink = document.getElementById('releaseLink');
 if (releaseLink) releaseLink.href = BETA.androidPage;
+const testflightLink = document.getElementById('testflightLink');
+if (testflightLink && BETA.ios) testflightLink.href = BETA.ios;
 
 // Populate the version badge from docs/version.json, committed by the release
 // workflow. Silent no-op if the file is missing or the fetch fails — the

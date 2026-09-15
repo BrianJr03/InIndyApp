@@ -329,17 +329,17 @@ h1.headline {
   padding-top: 8px;
 }
 
-/* ANDROID SETUP */
-.android-setup { border-top: 1px solid var(--line); padding-top: var(--section-y); }
-.android-setup h3 {
+/* BETA SETUP (iOS + Android) */
+.beta-setup { border-top: 1px solid var(--line); padding-top: var(--section-y); }
+.beta-setup h3 {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.6rem, 3.5vw, 2.1rem);
   letter-spacing: -0.01em;
   margin: 0.5rem 0 1.25rem;
 }
-.android-setup ol { margin: 0 0 1.75rem; padding-left: 1.25rem; color: var(--ink); }
-.android-setup ol li { margin-bottom: 0.5rem; }
+.beta-setup ol { margin: 0 0 1.75rem; padding-left: 1.25rem; color: var(--ink); }
+.beta-setup ol li { margin-bottom: 0.5rem; }
 .warn {
   border-left: 2px solid var(--line);
   padding: 0.25rem 0 0.25rem 1rem;
